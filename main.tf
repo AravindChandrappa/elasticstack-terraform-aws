@@ -66,10 +66,10 @@ resource "aws_security_group" "elasticsearch_sg" {
     Name="elasticsearch_sg"
   }
 }
-resource "aws_key_pair" "elastic_ssh_key" {
-  key_name="tf-kp"
-  public_key= file("tf-kp.pub")
-}
+resource "aws_key_pair" "kp" {
+ key_name   = "myKey2"       # Create a "myKey" to AWS!!
+  public_key = tls_private_key.pk.public_key_openssh
+} 
 resource "aws_instance" "elastic_nodes" {
   count = 3
   ami                    = "ami-04d29b6f966df1537"
