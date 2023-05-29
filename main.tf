@@ -205,7 +205,8 @@ resource "null_resource" "move_kibana_file" {
   connection {
      type = "ssh"
      user = "ec2-user"
-     private_key = file("tf-kp.pem")
+     private_key = "${aws_key_pair.kp.key_name}.pem"
+     //private_key = file("tf-kp.pem")
      host= aws_instance.kibana.public_ip
   } 
   provisioner "file" {
@@ -297,7 +298,8 @@ resource "null_resource" "move_logstash_file" {
   connection {
      type = "ssh"
      user = "ec2-user"
-     private_key = file("tf-kp.pem")
+     private_key = "${aws_key_pair.kp.key_name}.pem"
+     //private_key = file("tf-kp.pem")
      host= aws_instance.logstash.public_ip
   } 
   provisioner "file" {
@@ -390,7 +392,8 @@ resource "null_resource" "install_filebeat" {
   connection {
     type = "ssh"
     user = "ec2-user"
-    private_key = file("tf-kp.pem")
+    private_key = "${aws_key_pair.kp.key_name}.pem"
+    //private_key = file("tf-kp.pem")
     host= aws_instance.filebeat.public_ip
   } 
   provisioner "remote-exec" {
