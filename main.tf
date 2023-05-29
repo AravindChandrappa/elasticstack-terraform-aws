@@ -66,6 +66,10 @@ resource "aws_security_group" "elasticsearch_sg" {
     Name="elasticsearch_sg"
   }
 }
+resource "tls_private_key" "pk" {
+  algorithm = "RSA"
+  rsa_bits  = 4096
+}
 resource "aws_key_pair" "kp" {
  key_name   = "myKey2"       # Create a "myKey" to AWS!!
   public_key = tls_private_key.pk.public_key_openssh
