@@ -36,7 +36,7 @@ resource "aws_subnet" "elastic_subnet"{
 }
 variable "az_name" {
   type    = list(string)
-  default = ["us-east-1a","us-east-1b","us-east-1c"]
+  default = ["us-east-2a","us-east-2b","us-east-2c"]
 }
 #elasticsearch
 resource "aws_security_group" "elasticsearch_sg" {
