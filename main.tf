@@ -76,7 +76,7 @@ resource "aws_instance" "elastic_nodes" {
   instance_type          = "t2.large"
   subnet_id = aws_subnet.elastic_subnet[var.az_name[count.index]].id
   vpc_security_group_ids = [aws_security_group.elasticsearch_sg.id]
-  key_name               = aws_key_pair.elastic_ssh_key.key_name
+  key_name               = aws_key_pair.kp_name
   associate_public_ip_address = true
   tags = {
     Name = "elasticsearch_${count.index}"
