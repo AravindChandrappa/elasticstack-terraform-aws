@@ -110,7 +110,8 @@ resource "null_resource" "move_elasticsearch_file" {
   connection {
      type = "ssh"
      user = "ec2-user"
-     private_key = file("aws_key_pair.kp.key_name")
+       private_key = "${aws_key_pair.kp.key_name}.pem"
+     //private_key = file("aws_key_pair.kp.key_name")
      host= aws_instance.elastic_nodes[count.index].public_ip
   } 
   provisioner "file" {
