@@ -127,7 +127,8 @@ resource "null_resource" "start_es" {
   connection {
      type = "ssh"
      user = "ec2-user"
-     private_key = file("tf-kp.pem")
+      private_key = "${aws_key_pair.kp.key_name}.pem"
+    //private_key = file("tf-kp.pem")
      host= aws_instance.elastic_nodes[count.index].public_ip
   }
   provisioner "remote-exec" {
