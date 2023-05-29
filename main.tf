@@ -80,7 +80,7 @@ resource "local_file" "ssh_key" {
 }
 resource "aws_instance" "elastic_nodes" {
   count = 3
-  ami                    = "ami-04d29b6f966df1537"
+  ami                    = "ami-0a695f0d95cefc163"
   instance_type          = "t2.large"
   subnet_id = aws_subnet.elastic_subnet[var.az_name[count.index]].id
   vpc_security_group_ids = [aws_security_group.elasticsearch_sg.id]
