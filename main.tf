@@ -70,13 +70,17 @@ resource "aws_key_pair" "kp" {
  key_name   = "myKey2"       # Create a "myKey" to AWS!!
   public_key = tls_private_key.pk.public_key_openssh
 } 
+resource "local_file" "ssh_key" {
+  filename = "${aws_key_pair.kp.key_name}.pem"
+  content = tls_private_key.pk.private_key_pem
+}
 resource "aws_instance" "elastic_nodes" {
   count = 3
   ami                    = "ami-04d29b6f966df1537"
   instance_type          = "t2.large"
   subnet_id = aws_subnet.elastic_subnet[var.az_name[count.index]].id
   vpc_security_group_ids = [aws_security_group.elasticsearch_sg.id]
-  key_name               = aws_key_pair.kp_name
+  key_name               = aws_key_pair.kp.key_name
   associate_public_ip_address = true
   tags = {
     Name = "elasticsearch_${count.index}"
