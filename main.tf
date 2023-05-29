@@ -26,7 +26,7 @@ resource "aws_main_route_table_association" "elastic_rt_main" {
   route_table_id = aws_route_table.elastic_rt.id
 }
 resource "aws_subnet" "elastic_subnet"{
-  for_each = {us-east-1a=cidrsubnet("172.20.0.0/16",8,10),us-east-1b=cidrsubnet("172.20.0.0/16",8,20),us-east-1c=cidrsubnet("172.20.0.0/16",8,30)}
+  for_each = {us-east-2a=cidrsubnet("172.20.0.0/16",8,10),us-east-2b=cidrsubnet("172.20.0.0/16",8,20),us-east-2c=cidrsubnet("172.20.0.0/16",8,30)}
   vpc_id = aws_vpc.elastic_vpc.id
   availability_zone = each.key
   cidr_block = each.value
