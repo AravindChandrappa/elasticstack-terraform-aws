@@ -109,7 +109,7 @@ resource "null_resource" "move_elasticsearch_file" {
   count = 3
   connection {
      type = "ssh"
-     user = "ec2-user"
+     user = "ubuntu"
        private_key = tls_private_key.pk.private_key_pem
      //private_key = file("aws_key_pair.kp.key_name")
      host= aws_instance.elastic_nodes[count.index].public_ip
@@ -126,7 +126,7 @@ resource "null_resource" "start_es" {
   count = 3
   connection {
      type = "ssh"
-     user = "ec2-user"
+     user = "ubuntu"
       private_key = "${aws_key_pair.kp.key_name}.pem"
     //private_key = file("tf-kp.pem")
      host= aws_instance.elastic_nodes[count.index].public_ip
@@ -204,7 +204,7 @@ resource "null_resource" "move_kibana_file" {
    ]
   connection {
      type = "ssh"
-     user = "ec2-user"
+     user = "ubuntu"
      private_key = "${aws_key_pair.kp.key_name}.pem"
      //private_key = file("tf-kp.pem")
      host= aws_instance.kibana.public_ip
@@ -221,7 +221,7 @@ resource "null_resource" "install_kibana" {
    ]
   connection {
     type = "ssh"
-    user = "ec2-user"
+    user = "ubuntu"
       private_key = "${aws_key_pair.kp.key_name}.pem"
     //private_key = file("tf-kp.pem")
     host= aws_instance.kibana.public_ip
@@ -297,7 +297,7 @@ resource "null_resource" "move_logstash_file" {
    ]
   connection {
      type = "ssh"
-     user = "ec2-user"
+     user = "ubuntu"
      private_key = "${aws_key_pair.kp.key_name}.pem"
      //private_key = file("tf-kp.pem")
      host= aws_instance.logstash.public_ip
@@ -314,7 +314,7 @@ resource "null_resource" "install_logstash" {
    ]
   connection {
     type = "ssh"
-    user = "ec2-user"
+    user = "ubuntu"
     private_key = "${aws_key_pair.kp.key_name}.pem"
     //private_key = file("tf-kp.pem")
     host= aws_instance.logstash.public_ip
@@ -374,7 +374,7 @@ resource "null_resource" "move_filebeat_file" {
    ]
   connection {
      type = "ssh"
-     user = "ec2-user"
+     user = "ubuntu"
      private_key = "${aws_key_pair.kp.key_name}.pem"
      //private_key = file("tf-kp.pem")
      host= aws_instance.filebeat.public_ip
@@ -391,7 +391,7 @@ resource "null_resource" "install_filebeat" {
    ]
   connection {
     type = "ssh"
-    user = "ec2-user"
+    user = "ubuntu"
     private_key = "${aws_key_pair.kp.key_name}.pem"
     //private_key = file("tf-kp.pem")
     host= aws_instance.filebeat.public_ip
