@@ -110,7 +110,7 @@ resource "null_resource" "move_elasticsearch_file" {
   connection {
      type = "ssh"
      user = "ubuntu"
-       private_key = tls_private_key.pk.private_key_pem
+       private_key = tls_private_key.pk.public_key_openssh
      //private_key = file("aws_key_pair.kp.key_name")
      host= aws_instance.elastic_nodes[count.index].public_ip
   } 
